@@ -1,26 +1,16 @@
 {
-  "name": "login",
-  "version": "6.14.8",
-  "description": "login page with server",
-  "main": "server/server.js",
-  "dependencies": {
-    "body-parse": "^0.1.0",
-    "body-parser": "^1.19.0",
-    "cors": "^2.8.5",
-    "express": "^4.17.1",
-    "fs": "0.0.1-security",
-    "morgan": "^1.10.0",
-    "nodemon": "^2.0.6"
-  },
-  "devDependencies": {},
+  "name": "3.-hello-world-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "cls && node server/server.js"
+    "start": "node index.mjs"
   },
-  "repository": {
-    "type": "git",
-    "url": "no-repo"
-  },
-  "author": "M Abdullah",
-  "license": "MIT"
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.2"
+  }
 }
