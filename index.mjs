@@ -47,6 +47,15 @@ const postSchema = new mongoose.Schema({
 });
 const Post = mongoose.model('Post', postSchema);
 
+const EmailSchema = new mongoose.Schema({
+    "text": String,
+    "messege":String,
+    "email":String,
+    "contact":Number,
+    "createdOn": { type: Date, default: Date.now }
+});
+
+const Email = mongoose.model('Email', EmailSchema);
 
 app.get('/post/:id', (req, res) => {
     Post.findOne({ _id: req.params.id }, (err, data) => {
@@ -115,6 +124,31 @@ app.delete('/post/:id', (req, res) => {
                 res.status(500).send("something went wrong")
             }
         });
+})
+
+
+
+//email
+app.post('/email', (req, res) => {
+
+    if (!req.body.messege || req.body.messege.length > 200) {
+        res.status(400).send(`text is required in json body (max 200 chars), e.g: { "text" : "what is in your mind" }`);
+        return;
+    }
+
+    let newPost = new Emails({
+        messege: req.body.messege,
+        contact:req.body.connect,
+        email:req.body.email,
+    });
+
+    newPost.save((err, saved) => {
+        if (!err) {
+            res.send("your messege is saved 🥳");
+        } else {
+            res.status(500).send("some thing went wrong, please try later");
+        }
+    })
 })
 
 const PORT = process.env.PORT || 3000;
