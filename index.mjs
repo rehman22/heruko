@@ -48,11 +48,13 @@ process.on('SIGINT', function () {/////this function will run jst before app is 
 // const Post = mongoose.model('Post', postSchema);
 
 const EmailSchema = new mongoose.Schema({
-    "text": String,
+    "name": String,
+
+    
     "messege":String,
     "email":String,
-    "contact":Number,
-    // "createdOn": { type: Date, default: Date.now }
+    "subject":Number,
+     "createdOn": { type: Date, default: Date.now }
 });
 
 const Email = mongoose.model('Email', EmailSchema);
@@ -130,19 +132,20 @@ app.delete('/post/:id', (req, res) => {
 
 //email
 app.post('/email', (req, res) => {
-
+    console.log(req.body)
     if (!req.body.messege ) {
+       
         res.status(400).send(`text is required in json body (max 200 chars), e.g: { "messege" : "what is in your mind" }`);
         return;
     }
-
     let newEmail = new Email({
         name:req.body.name,
         messege: req.body.messege,
-        contact:req.body.contact,
+        subject:req.body.subject,
         email:req.body.email,
     });
 
+    console.log(newEmail)
     newEmail.save((err, saved) => {
         if (!err) {
             res.send("your messege saved");
