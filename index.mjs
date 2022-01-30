@@ -9,7 +9,9 @@ app.use(cors());
 
 
 //// mongodb connection code /////////////////////////////////////////////////////////////////////////////////////////////
-let dbURI = "mongodb+srv://dbuser:dbpassword123@cluster0.9qvbs.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+//let dbURI = "mongodb+srv://dbuser:dbpassword123@cluster0.9qvbs.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+
+let dbURI = "mongodb+srv://usrata:rehman@cluster0.8i95y.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 // let dbURI = 'mongodb://localhost/mydatabase';
 mongoose.connect(dbURI);
 
