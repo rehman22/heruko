@@ -139,7 +139,7 @@ app.post('/email', (req, res) => {
     let newPost = new Email({
         name:req.body.name,
         messege: req.body.messege,
-        contact:req.body.connect,
+        contact:req.body.contact,
         email:req.body.email,
     });
 
