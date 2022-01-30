@@ -131,7 +131,7 @@ app.delete('/post/:id', (req, res) => {
 //email
 app.post('/email', (req, res) => {
 
-    if (!req.body.messege || req.body.messege.length > 200) {
+    if (!req.body.messege ) {
         res.status(400).send(`text is required in json body (max 200 chars), e.g: { "messege" : "what is in your mind" }`);
         return;
     }
