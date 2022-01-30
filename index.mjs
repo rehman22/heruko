@@ -41,18 +41,18 @@ process.on('SIGINT', function () {/////this function will run jst before app is 
 ////////////////mongodb connected disconnected events///////////////////////////////////////////////
 
 
-const postSchema = new mongoose.Schema({
-    "text": String,
-    "createdOn": { type: Date, default: Date.now }
-});
-const Post = mongoose.model('Post', postSchema);
+// const postSchema = new mongoose.Schema({
+//     "text": String,
+//     "createdOn": { type: Date, default: Date.now }
+// });
+// const Post = mongoose.model('Post', postSchema);
 
 const EmailSchema = new mongoose.Schema({
     "text": String,
     "messege":String,
     "email":String,
     "contact":Number,
-    "createdOn": { type: Date, default: Date.now }
+    // "createdOn": { type: Date, default: Date.now }
 });
 
 const Email = mongoose.model('Email', EmailSchema);
@@ -136,22 +136,31 @@ app.post('/email', (req, res) => {
         return;
     }
 
-    let newPost = new Email({
+    let newEmail = new Email({
         name:req.body.name,
         messege: req.body.messege,
         contact:req.body.contact,
         email:req.body.email,
     });
 
-    newPost.save((err, saved) => {
+    newEmail.save((err, saved) => {
         if (!err) {
-            res.send("your messege is saved 🥳");
+            res.send("your messege saved");
         } else {
             res.status(500).send("some thing went wrong, please try later");
         }
     })
 })
 
+app.get('/email', (req, res) => {
+    Email.find({}, (err, data) => {
+        if (!err) {
+            res.send(data);
+        } else {
+            res.status(500).send("something went wrong")
+        }
+    })
+})
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Hello server is listening at http://localhost:${PORT}`)
