@@ -53,7 +53,7 @@ const EmailSchema = new mongoose.Schema({
     
     "messege":String,
     "email":String,
-    "subject":Number,
+    "subject":String,
      "createdOn": { type: Date, default: Date.now }
 });
 
@@ -144,8 +144,7 @@ app.post('/email', (req, res) => {
         subject:req.body.subject,
         email:req.body.email,
     });
-
-    console.log(newEmail)
+ 
     newEmail.save((err, saved) => {
         if (!err) {
             res.send("your messege saved");
